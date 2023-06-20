@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { StyledForm, StyledHeading, StyledLabel } from "./ProductForm.styled";
 import { StyledButton } from "../Button/Button.styled";
+import { mutate } from "swr";
 
 export default function ProductForm() {
   const [productData, setProductData] = useState({
@@ -29,7 +30,8 @@ export default function ProductForm() {
           price: "",
           currency: "EUR",
         });
-        console.log("Product created.");
+        console.log(mutate("/api/products"));
+        mutate("/api/products");
       } else {
         throw new Error("Failed to create product.");
       }
